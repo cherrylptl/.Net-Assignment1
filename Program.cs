@@ -4,10 +4,9 @@ class Program
 {
     static string[] productsList = { "Mouse", "KeyBoard", "Leptop", "HardDrive", "SSD" };
     static double[] productsPrice = { 10.00, 15.00, 500.00, 20.00, 30.00 };
+
     static void Main(string[] args)
     {
-
-
 
         StudentInformation();
 
@@ -95,6 +94,7 @@ class Program
         }
         return subTotal;
     }
+
     static double LoyaltyCardDiscount(double subTotal, bool loyalty)
     {
         return loyalty ? 0.10 * subTotal : 0;
