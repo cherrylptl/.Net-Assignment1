@@ -35,7 +35,7 @@ class Program
 
     static void StudentInformation()
     {
-        Console.WriteLine("\nName : Patel Cherryl \nStudent Number : 8963305 \nEmai : cpatel3305@conestogac.on.ca\n");
+        Console.WriteLine("\nName : Patel Cherryl \nStudent Number : 8963305 \nEmail : cpatel3305@conestogac.on.ca\n");
     }
 
 
@@ -59,18 +59,43 @@ class Program
 
         for (int i = 0; i < productsList.Length; i++)
         {
-            Console.Write($"Enter the quantity of {productsList[i]} (0 for none): ");
-            quantities[i] = int.Parse(Console.ReadLine());
-        }
+            bool validNumber = false;
+            do
+            {
 
+                Console.Write($"Enter the quantity of {productsList[i]} (0 for none): ");
+
+                if (int.TryParse(Console.ReadLine(), out int userInput) && userInput >= 0)
+                {
+                    quantities[i] = userInput;
+                    validNumber = true;
+                }
+                else
+                {
+                    Console.Write("Invalid Input, Enter Again\n");
+                }
+
+            }
+            while (!validNumber);
+        }
         return quantities;
     }
 
     static bool HasLoyaltyCard()
     {
-        Console.Write("\nDo you have a loyalty card? (yes/no): ");
-        string userInput = Console.ReadLine();
-        return userInput == "yes";
+
+        while (true)
+        {
+            Console.Write("\nDo you have a loyalty card? (yes/no): ");
+            string userInput = Console.ReadLine().ToLower();
+
+            if (userInput == "yes" || userInput == "no")
+            {
+                return userInput == "yes";
+            }
+            Console.WriteLine("\nInvalid input. Try again.");
+        }
+
     }
 
     static void Receipt(int[] quantities)
